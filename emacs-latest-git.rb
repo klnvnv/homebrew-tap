@@ -11,11 +11,13 @@ class EmacsLatestGit < Formula
   depends_on "automake" => :build
   depends_on "imagemagick"
 
+  cpus = `sysctl -n hw.logicalcpu`
+  
   def install
     system "./autogen.sh"
     system "CPPFLAGS=`xml2-config --cflags` ./configure --with-ns"
-    system "CPPFLAGS=`xml2-config --cflags` make"
-    system "CPPFLAGS=`xml2-config --cflags` make install"
+    system "CPPFLAGS=`xml2-config --cflags` make -j#{cpus + 1}"
+    system "CPPFLAGS=`xml2-config --cflags` make -j#{cpus + 1} install"
     system "open nextstep"
   end
 end
