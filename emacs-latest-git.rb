@@ -5,7 +5,7 @@ class EmacsLatestGit < Formula
   homepage "https://www.gnu.org/software/emacs/"
   url "https://github.com/emacs-mirror/emacs.git"
 
-  version Time.now.to_s
+  version Time.now.strftime("%d-%m-%Y-%H-%M")
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
