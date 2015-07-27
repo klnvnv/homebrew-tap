@@ -11,8 +11,8 @@ class EmacsLatestGit < Formula
 
   def install
     system "./autogen.sh"
-    system "CPPFLAGS=`xml2-config --cflags` ./configure" "--with-ns"
+    system "CPPFLAGS=`xml2-config --cflags` ./configure --with-ns"
     system "CPPFLAGS=`xml2-config --cflags` make"
-    system "CPPFLAGS=`xml2-config --cflags` make" "install"
+    system "CPPFLAGS=`xml2-config --cflags` make install"
   end
 end
