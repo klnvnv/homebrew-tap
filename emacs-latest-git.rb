@@ -1,9 +1,11 @@
+require 'date'
+
 class EmacsLatestGit < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
   url "https://github.com/emacs-mirror/emacs.git"
 
-  version "0.1"
+  version Time.now.to_s
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
