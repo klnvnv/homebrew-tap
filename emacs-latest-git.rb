@@ -1,4 +1,4 @@
-class Emacs < Formula
+class EmacsLatestGit < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
   url "https://github.com/emacs-mirror/emacs.git"
