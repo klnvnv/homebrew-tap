@@ -16,5 +16,6 @@ class EmacsLatestGit < Formula
     system "CPPFLAGS=`xml2-config --cflags` ./configure --with-ns"
     system "CPPFLAGS=`xml2-config --cflags` make"
     system "CPPFLAGS=`xml2-config --cflags` make install"
+    system "open nextstep"
   end
 end
