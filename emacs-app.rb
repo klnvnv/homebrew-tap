@@ -1,23 +1,26 @@
 require 'date'
 
-class EmacsLatestGit < Formula
+class EmacsApp < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs/"
   url "https://github.com/emacs-mirror/emacs.git"
 
+  keg_only "Have to move the app out of the Cellar anyway"
+  
   version Time.now.strftime("%d-%m-%Y-%H-%M")
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "imagemagick"
-
-  cpus = `sysctl -n hw.logicalcpu`
   
   def install
+    cpus = `sysctl -n hw.logicalcpu`.gsub("\n", "")
+    ENV["CPPFLAGS"] = `xml2-config --cflags`.gsub("\n", "")
+    
     system "./autogen.sh"
-    system "CPPFLAGS=`xml2-config --cflags` ./configure --with-ns"
-    system "CPPFLAGS=`xml2-config --cflags` make -j#{cpus + 1}"
-    system "CPPFLAGS=`xml2-config --cflags` make -j#{cpus + 1} install"
-    system "open nextstep"
+    system "./configure --with-ns"
+    system "make -j#{cpus}"
+    system "make -j{cpus} install"
+    prefix.install "nextstep/Emacs.app"
   end
 end
